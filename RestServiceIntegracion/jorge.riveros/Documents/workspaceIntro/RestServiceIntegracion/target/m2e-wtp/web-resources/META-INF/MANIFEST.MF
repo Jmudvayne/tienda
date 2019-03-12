@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: RestServiceIntegracion
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: jorge.riveros
+Implementation-Vendor-Id: com.payulatam.test.integracion
+Build-Jdk: 1.8.0_201
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/RestServiceIntegracion
+Created-By: Maven Integration for Eclipse
+
