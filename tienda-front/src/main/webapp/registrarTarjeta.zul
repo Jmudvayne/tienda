@@ -1,0 +1,76 @@
+<?page title="Cuentas" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+<zk>
+	<window id="win2" title="${labels.app.token.titulo}" border="none"
+		apply=" com.payulatam.tienda.front.controller.TokenViewController">
+
+		<grid id="grid" hflex="1" vflex="1">
+			<columns>
+				<column width="25%" />
+				<column width="30%" />
+			</columns>
+			<rows>
+				<row>
+
+					<label value="${labels.app.token.nombre} " width="200px" sclass="etiquetaStyle" />
+					<textbox id="nameCardTextbox" width="300px" tabindex="1"												
+						sclass="inputStyle"/>
+
+				</row>
+								
+				<row>
+
+					<label value="${labels.app.token.numeroTarjeta}" width="200px" sclass="etiquetaStyle" />
+					<textbox id="numberCardTextbox" width="150px" tabindex="2"												
+						sclass="inputStyle" />
+				</row>
+				
+				<row>
+
+					<label value="${labels.app.token.fechaExpiracion}" width="200px" sclass="etiquetaStyle" />
+					<textbox id="expirationDateTextbox" width="150px" tabindex="2"
+											
+						sclass="inputStyle" />
+				</row>
+				<row>
+
+					<label value="${labels.app.token.metodo}" width="200px" sclass="etiquetaStyle"/>
+
+
+					<combobox id="methodPaymentCombobox" width="300px"						
+						
+						sclass="inputStyle" tabindex="3" >
+
+						<comboitem label="@{each}" sclass="inputStyle"/>
+
+					</combobox>
+
+				</row>
+			</rows>
+
+		</grid>
+
+
+		<separator spacing="20px" />
+		<hlayout>
+			<button id="saveButton" label="${labels.app.token.crear}" sclass="buttonStyle"/>
+
+			<button id="cancelButton" label="${labels.app.token.cancelar}" sclass="buttonStyle"/>
+		</hlayout>
+		
+		<separator spacing="20px" />
+		
+		<grid id="tokenGrid" mold="paging" pageSize="5" >
+			<columns>
+				<column width="25%" label="NOMBRE" sort="auto(numero)"/>
+				<column width="30%"  label="NUMERO" sort="auto(saldo)"/>
+				<column width="25%"  label="METODO" sort="auto(titular.nombre)"/>
+				<column width="25%"  label="TOKEN" sort="auto(titular.nombre)"/>
+				
+			</columns>
+			
+		</grid>
+
+	</window>
+</zk>

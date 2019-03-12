@@ -1,0 +1,18 @@
+<grid id="gridInicio" hflex="1" vflex="1">
+    <columns>
+        <column width="100%"/>
+        <column/>
+    </columns>
+    <rows>
+        <row>
+            Ejercicio Prototipo
+        </row>
+        <row>
+              Jorge Orlando Riveros
+        </row>
+        <row>
+            Febrero 2019
+        </row>
+        
+    </rows>
+</grid>

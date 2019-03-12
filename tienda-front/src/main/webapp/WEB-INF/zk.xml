@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk>
+	<!-- [Optional] Uncomment if you want to defines the application's name 
+		<preference> <name>org.zkoss.zk.ui.WebApp.name</name> <value>BancoFront</value> 
+		</preference> -->
+	<library-property>
+		<name>org.zkoss.util.label.web.charset</name>
+		<value>ISO-8859-1</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.theme.preferred</name>
+		<value>sapphire</value>
+	</library-property>
+	
+</zk>
