@@ -42,6 +42,7 @@ public class ServicePayU implements IServicePayU {
 
 	@Override
 	public List<PaymentMethodComplete> getMetodosPago() throws PayUException, ConnectionException {
+		
 		return PayUPayments.getPaymentMethods().stream().filter(x -> x.getCountry().equals("CO"))
 				.collect(Collectors.toList());
 	}

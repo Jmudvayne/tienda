@@ -12,8 +12,10 @@ import org.zkoss.zul.Grid;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Textbox;
 
+import com.payulatam.tienda.common.Token;
 import com.payulatam.tienda.common.services.ResponseToken;
 import com.payulatam.tienda.common.services.SolicitudToken;
+import com.payulatam.tienda.front.render.TokenRender;
 import com.payulatam.tienda.front.util.RestUtil;
 
 public class TokenViewController extends GenericForwardComposer {
@@ -31,7 +33,7 @@ public class TokenViewController extends GenericForwardComposer {
 	private Combobox methodPaymentCombobox;
 
 	// Tabla para los token ya registrados
-	private Grid  tokensGrid;
+	private Grid tokensGrid;
 
 	// Flag para saber si se esta creando o modificando
 	private boolean isEdit;
@@ -44,6 +46,8 @@ public class TokenViewController extends GenericForwardComposer {
 		super.doAfterCompose(comp);
 		methodPaymentCombobox.setModel(new ListModelList(RestUtil.getMetodosPago().getMetodosPago()));
 		isEdit = false;
+		tokensGrid.setRowRenderer(new TokenRender());
+		actualizarModelo();
 
 	}
 
@@ -52,19 +56,19 @@ public class TokenViewController extends GenericForwardComposer {
 	 */
 	public void onClick$saveButton() throws InterruptedException {
 		if (!validarCamposVacios()) {
-			SolicitudToken solicitud = new SolicitudToken(nameCardTextbox.getValue(),numberCardTextbox.getValue(),expirationDateTextbox.getValue(),
-					methodPaymentCombobox.getValue(), null);
-			
-			
+			SolicitudToken solicitud = new SolicitudToken(nameCardTextbox.getValue(), numberCardTextbox.getValue(),
+					expirationDateTextbox.getValue(), methodPaymentCombobox.getValue(), null);
+
 			ResponseToken respuesta = new ResponseToken();
 			respuesta = RestUtil.tokenizarTarjeta(solicitud);
-			if (respuesta.getCodigo() == 0) {
-				Messagebox.show(Labels.getLabel(isEdit ? "app.cuenas.exitoModificacion" : "app.cuentas.exitoCreacion"));
+			if (respuesta.getCodigo() == 0 ) {
+				Messagebox.show(Labels.getLabel("app.token.exito"));
 				actualizarModelo();
+				reset();
 			} else {
 				Messagebox.show(respuesta.getMensaje(), "Error", Messagebox.OK, Messagebox.ERROR);
 			}
-			reset();
+			
 
 		} else {
 			Messagebox.show(Labels.getLabel("app.error.camposvacion"), "Error", Messagebox.OK, Messagebox.ERROR);
@@ -110,7 +114,9 @@ public class TokenViewController extends GenericForwardComposer {
 	 */
 	public void actualizarModelo() {
 
-		
+		tokensGrid.setModel(
+				new ListModelList(RestUtil.getTokens().getTokens() != null ? RestUtil.getTokens().getTokens()
+						: new ArrayList<Token>()));
 
 	}
 

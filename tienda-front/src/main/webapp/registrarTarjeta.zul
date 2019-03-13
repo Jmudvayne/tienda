@@ -3,7 +3,7 @@
 
 <zk>
 	<window id="win2" title="${labels.app.token.titulo}" border="none"
-		apply=" com.payulatam.tienda.front.controller.TokenViewController">
+		apply="com.payulatam.tienda.front.controller.TokenViewController">
 
 		<grid id="grid" hflex="1" vflex="1">
 			<columns>
@@ -61,7 +61,7 @@
 		
 		<separator spacing="20px" />
 		
-		<grid id="tokenGrid" mold="paging" pageSize="5" >
+		<grid id="tokensGrid" mold="paging" pageSize="5" >
 			<columns>
 				<column width="25%" label="NOMBRE" sort="auto(numero)"/>
 				<column width="30%"  label="NUMERO" sort="auto(saldo)"/>

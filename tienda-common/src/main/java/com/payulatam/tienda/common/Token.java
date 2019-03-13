@@ -128,6 +128,6 @@ public class Token {
 
 
 	public String toString() {
-        return "id[" + id + "] maskedNumber[" + maskedNumber+ "] paymentMethod[" + paymentMethod+ "] tokenId[" + tokenId+ "]";
+        return name + " - " + maskedNumber;
     }
 }

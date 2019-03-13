@@ -15,6 +15,9 @@ public class RestURIConstants {
 	public static final String PATH = "/tienda";
 	//Path para traer toda la lista de metodos de pago
 	public static final String GET_ALL_METHODPAY = "/metodosPago";
+	
+	//Path para traer toda la lista de metodos de tokens
+		public static final String GET_ALL_TOKENS= "/tokens";
 
 	//Path para tokenizar
 	public static final String TOKEN_PROCESS= "/tokenizar";

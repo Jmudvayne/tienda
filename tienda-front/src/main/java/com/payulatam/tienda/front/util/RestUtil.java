@@ -36,5 +36,12 @@ public class RestUtil {
 	public static ResponseToken tokenizarTarjeta(SolicitudToken solicitud){
 		return  restTemplate.postForObject(SERVER + RestURIConstants.TOKEN_PROCESS, solicitud, ResponseToken.class);
 	}
+	
+	/**
+     * Metodo que obtiene los métodos de pago disponibles por PayU     * 
+     */
+	public static ResponseToken getTokens(){
+		return restTemplate.getForObject(SERVER + RestURIConstants.GET_ALL_TOKENS, ResponseToken.class);
+	}
 
 }

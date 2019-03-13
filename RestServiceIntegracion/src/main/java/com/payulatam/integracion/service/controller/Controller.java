@@ -80,22 +80,17 @@ public class Controller {
 		return response;		
 	}
 	
-	/*@GetMapping("/tokens")
-	public ResponseMetodosPago obtenerTokens() {
+	@GetMapping("/tokens")
+	public ResponseToken obtenerTokens() {
 		
-		ResponseMetodosPago response = new ResponseMetodosPago();
+		ResponseToken response = new ResponseToken(200,"ok");
 		
-		try {
-			response.setMetodosPago(serviceGS.getTokens()));
-		} catch (PayUException | ConnectionException e) {
-			
-			e.printStackTrace();
-			
-		}
+		response.setTokens(serviceGS.getTokens());
+		
 
 		return response;
 		
-	}*/
+	}
 	
 	
 	@GetMapping("/tokenizar")
@@ -141,8 +136,9 @@ public class Controller {
 		} catch (PayUException | InvalidParametersException | ConnectionException e) {
 			
 			logger.error("Problema al tokenizar", e);
-			e.printStackTrace();
-		
+			response.setCodigo(404);
+			response.setMensaje(e.getMessage());
+			
 		}
 		
 		
