@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.persistence.Id;
 
@@ -28,14 +30,13 @@ public class Customer implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-    private String idCustomer;
+	private String idCustomer;
 
-    private String name;
+	private String name;
 
-    private String  dni;
+	private String  dni;
     
-    private String  city;
+	private String  city;
     
     private String  address;
     

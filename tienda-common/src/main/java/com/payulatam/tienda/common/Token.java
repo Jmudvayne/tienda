@@ -8,10 +8,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -115,8 +118,8 @@ public class Token {
 	/**
 	 * The customer who owns the token
 	 */
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="idCustomer")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="customer")
 	public Customer getCustomer() {
 		return customer;
 	}
