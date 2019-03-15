@@ -24,7 +24,7 @@ public class PagoViewController extends GenericForwardComposer {
 	private Combobox tokensCombobox;
 
 	// 	// Flag para saber si se esta creando o modificando
-	private boolean isEdit;
+	private boolean isPagoConToken;
 
 	/**
 	 * Método que entrega la data de metodos de pago y los estrega a la vista
@@ -34,7 +34,7 @@ public class PagoViewController extends GenericForwardComposer {
 		super.doAfterCompose(comp);
 		
 		tokensCombobox.setModel(new ListModelList(RestUtil.getTokens().getTokens()));
-		isEdit = false;
+		isPagoConToken = false;
 		
 	}
 
@@ -43,6 +43,7 @@ public class PagoViewController extends GenericForwardComposer {
 	 */
 	public void onClick$saveButton() throws InterruptedException {
 		if (!validarCamposVacios()) {
+			
 			
 
 		} else {
@@ -65,7 +66,7 @@ public class PagoViewController extends GenericForwardComposer {
 	public void reset() {
 		// saveButton.setLabel(Labels.getLabel("app.boton.crear"));
 		
-		isEdit = false;
+		isPagoConToken = false;
 
 	}
 

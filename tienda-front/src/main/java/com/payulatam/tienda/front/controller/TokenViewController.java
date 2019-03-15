@@ -3,18 +3,22 @@ package com.payulatam.tienda.front.controller;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.util.GenericForwardComposer;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Grid;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Textbox;
 
+import com.payulatam.tienda.common.CreditCardData;
 import com.payulatam.tienda.common.Token;
-import com.payulatam.tienda.common.services.ResponseToken;
-import com.payulatam.tienda.common.services.SolicitudToken;
+import com.payulatam.tienda.common.request.SolicitudToken;
+import com.payulatam.tienda.common.response.ResponseToken;
 import com.payulatam.tienda.front.render.TokenRender;
 import com.payulatam.tienda.front.util.RestUtil;
 
@@ -48,7 +52,7 @@ public class TokenViewController extends GenericForwardComposer {
 		isEdit = false;
 		tokensGrid.setRowRenderer(new TokenRender());
 		actualizarModelo();
-
+		
 	}
 
 	/**
@@ -56,12 +60,12 @@ public class TokenViewController extends GenericForwardComposer {
 	 */
 	public void onClick$saveButton() throws InterruptedException {
 		if (!validarCamposVacios()) {
-			SolicitudToken solicitud = new SolicitudToken(nameCardTextbox.getValue(), numberCardTextbox.getValue(),
-					expirationDateTextbox.getValue(), methodPaymentCombobox.getValue(), null);
+			CreditCardData dataTarjeta = new CreditCardData( numberCardTextbox.getValue(),expirationDateTextbox.getValue(), null, methodPaymentCombobox.getValue());
+ 			SolicitudToken solicitud = new SolicitudToken(nameCardTextbox.getValue());		solicitud.setCardData(dataTarjeta);
+ 				
 
-			ResponseToken respuesta = new ResponseToken();
-			respuesta = RestUtil.tokenizarTarjeta(solicitud);
-			if (respuesta.getCodigo() == 0 ) {
+			ResponseToken respuesta = RestUtil.tokenizarTarjeta(solicitud);
+			if (respuesta.getCodigo().equals("0")) {
 				Messagebox.show(Labels.getLabel("app.token.exito"));
 				actualizarModelo();
 				reset();
@@ -80,15 +84,14 @@ public class TokenViewController extends GenericForwardComposer {
 	 * Método que recibe el evento onClick del botón Cancelar
 	 */
 	public void onClick$cancelButton() {
-		reset();
-		// Executions.getCurrent().sendRedirect("/menu.zul");
+		reset();		
 	}
 
 	/**
 	 * Método que limpia los campos
 	 */
 	public void reset() {
-		// saveButton.setLabel(Labels.getLabel("app.boton.crear"));
+		
 		nameCardTextbox.setValue("");
 		numberCardTextbox.setValue("");
 		expirationDateTextbox.setValue("");

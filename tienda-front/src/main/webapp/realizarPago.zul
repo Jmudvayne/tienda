@@ -12,30 +12,53 @@
 			</columns>
 			<rows>
 				<row>
+					<label value="Fecha Cita" width="200px"
+						sclass="etiquetaStyle" />
+					<datebox id="finalDateCalendar" format="yyyy/MM/dd"
+						constraint="no empty" />
 
-					
 
 				</row>
-								
+
 				<row>
+					<label value="Pago con token" width="200px"
+						sclass="etiquetaStyle" />
+					<radiogroup id="paymentTypeRadiogroup"
+						sclass="inputStyle">
+						<radio label="Tarjeta ya registrada"
+							value="true" />
+						<radio label="Método sin registrar"
+							value="false" />
 
-					
+					</radiogroup>
+
 				</row>
+
+				<row>
 				
-				<row>
+				<label value="Seleccione el día"
+						width="200px" sclass="etiquetaStyle" />
+				
+					<combobox id="horasDisponiblesCombobox" width="500px"
+						 sclass="inputStyle"	tabindex="3">
 
+						<comboitem label="@{each}" sclass="inputStyle" />
+
+					</combobox>
 					
+
+
 				</row>
 				<row>
 
-					<label value="${labels.app.token.metodo}" width="200px" sclass="etiquetaStyle"/>
+					<label value="${labels.app.token.metodo}"
+						width="200px" sclass="etiquetaStyle" />
 
+					<combobox id="tokensCombobox" width="300px"
+						sclass="inputStyle" tabindex="3">
 
-					<combobox id="tokensCombobox" width="300px"						
-						
-						sclass="inputStyle" tabindex="3" >
-
-						<comboitem label="@{each.nombre}" sclass="inputStyle"/>
+						<comboitem label="@{each.nombre}"
+							sclass="inputStyle" />
 
 					</combobox>
 
@@ -47,14 +70,16 @@
 
 		<separator spacing="20px" />
 		<hlayout>
-			<button id="saveButton" label="${labels.app.token.crear}" sclass="buttonStyle"/>
+			<button id="saveButton" label="${labels.app.token.crear}"
+				sclass="buttonStyle" />
 
-			<button id="cancelButton" label="${labels.app.token.cancelar}" sclass="buttonStyle"/>
+			<button id="cancelButton"
+				label="${labels.app.token.cancelar}" sclass="buttonStyle" />
 		</hlayout>
-		
+
 		<separator spacing="20px" />
-		
-		
+
+
 
 	</window>
 </zk>

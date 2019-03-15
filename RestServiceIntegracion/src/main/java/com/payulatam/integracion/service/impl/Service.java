@@ -23,7 +23,8 @@ import com.payu.sdk.model.PaymentCountry;
 import com.payu.sdk.model.PaymentMethodComplete;
 import com.payu.sdk.model.TransactionResponse;
 import com.payulatam.tienda.common.Customer;
-import com.payulatam.tienda.common.services.SolicitudToken;
+import com.payulatam.tienda.common.request.SolicitudToken;
+
 
 
 @Component
@@ -335,11 +336,7 @@ public class Service {
 		//Ingrese aquí el documento de identificación del comprador.
 		parameters.put(PayU.PARAMETERS.PAYER_DNI, solicitud.getCustomer().getDni());
 		//Ingrese aquí el número de la tarjeta de crédito
-		parameters.put(PayU.PARAMETERS.CREDIT_CARD_NUMBER, solicitud.getNumeroTarjeta());
-		//Ingrese aquí la fecha de vencimiento de la tarjeta de crédito
-		parameters.put(PayU.PARAMETERS.CREDIT_CARD_EXPIRATION_DATE, solicitud.getFechaExp());
-		//Ingrese aquí el nombre de la tarjeta de crédito
-		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD, solicitud.getMetodoPago());
+		
 		
 		response = PayUTokens.create(parameters);
 		
